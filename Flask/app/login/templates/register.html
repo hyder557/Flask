@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <form method="POST" action="{{ url_for('main.register') }}">
+        {{ form.hidden_tag() }}
+        <div class="container">
+            <div class="top"></div>
+            <div class="bottom"></div>
+            <div class="center">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for message in messages %}
+                            <p class="flash-message">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
+                <h2>Please Sign Up</h2>
+                <div class="form-input-group">
+                    {{ form.username(size=32, class_='form_input', placeholder='Username') }}
+                </div>
+                <div class="form-input-group">
+                    {{ form.password(size=32, class_='form_input', placeholder='Password') }}
+                </div>
+                <div class="button-container"> {{ form.submit(class_='button_login') }} </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
